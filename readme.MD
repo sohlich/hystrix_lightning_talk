@@ -24,6 +24,11 @@ source:https://github.com/Netflix/Hystrix/wiki
 - give dependency time to recover
 
 ---
+
+# How it works
+<img src="https://raw.githubusercontent.com/wiki/Netflix/Hystrix/images/hystrix-command-flow-chart.png" />
+
+---
 # Demo Time
 - dashboard
 - config

@@ -21,14 +21,13 @@ public class WeatherEndpoint {
 
     private final Random r = new Random();
 
-    @HystrixCommand(fallbackMethod = "fallBack",
-            commandProperties = {})
+    @HystrixCommand(fallbackMethod = "fallBack")
     @GetMapping(path = "current")
     public WeatherData getWeather() {
         try {
 
             // Randomly throw exception
-            if (r.nextInt(100) > 30)
+            if (r.nextInt(100) < 30)
                 throw new RuntimeException("Cannot handle " +
                         "request");
 

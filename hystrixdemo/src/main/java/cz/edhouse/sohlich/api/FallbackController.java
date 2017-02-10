@@ -11,18 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Random;
 
 /**
- * Created by Radomir Sohlich on 2/6/17.
+ * Created by Radomir Sohlich on 2/10/17.
  */
 @RestController
-@RequestMapping("/api/weather")
-public class WeatherEndpoint {
+@RequestMapping("/api/fallback")
+public class FallbackController {
 
-    Logger log = LoggerFactory.getLogger(WeatherEndpoint.class);
-
-    private final Random r = new Random();
+    private Logger log = LoggerFactory.getLogger(FallbackController.class);
+    private Random r = new Random();
 
     @HystrixCommand(fallbackMethod = "fallBack")
-    @GetMapping(path = "current")
+    @GetMapping
     public WeatherData getWeather() {
         try {
 
@@ -40,7 +39,6 @@ public class WeatherEndpoint {
 
     }
 
-
     public WeatherData fallBack() {
         WeatherData data = new WeatherData();
         log.info("Fallback executed");
@@ -48,4 +46,6 @@ public class WeatherEndpoint {
         data.setTemperature("Not available");
         return data;
     }
+
+
 }
